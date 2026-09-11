@@ -1,0 +1,4 @@
+interface:
+  display_name: "Baton Pass"
+  short_description: "Coordinate a lightweight multi-agent delivery"
+  default_prompt: "Use $baton-pass to plan, implement, review, and deliver this repository change."

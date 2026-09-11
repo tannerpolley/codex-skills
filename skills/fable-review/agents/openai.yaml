@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fable Review"
+  short_description: "Run an isolated Fable review correctly"
+  default_prompt: "Use $fable-review to review this change with Fable."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Orchestrate"
+  short_description: "Supervise repository work through verified closeout"
+  default_prompt: "Use $orchestrate to coordinate this repository issue through delegated implementation, independent acceptance, and the closeout I authorize."

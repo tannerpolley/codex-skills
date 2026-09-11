@@ -1,0 +1,4 @@
+interface:
+  display_name: "Git"
+  short_description: "Local Git state, history, and worktrees"
+  default_prompt: "Use $git for safe, focused local Git repository work."

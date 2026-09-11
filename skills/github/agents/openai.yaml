@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub"
+  short_description: "GitHub repositories, PRs, and profile policy"
+  default_prompt: "Use $github to manage this GitHub repository and follow my hosted-workflow preferences."

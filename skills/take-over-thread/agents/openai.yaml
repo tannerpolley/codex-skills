@@ -1,0 +1,4 @@
+interface:
+  display_name: "Take Over Thread"
+  short_description: "Move oversized work into a fresh thread"
+  default_prompt: "Use $take-over-thread to move this oversized Codex thread into a fresh successor thread with a complete handoff."
