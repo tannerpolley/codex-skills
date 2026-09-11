@@ -75,6 +75,7 @@ Keep the direct message short:
 
 ```text
 $baton-pass session=<id> role=<role> action=<action> read=<absolute-session-path>
+Completion gate: return a final response only after the required artifact, holder update, and direct message to the recorded next task all succeed; otherwise restore yourself as holder and report the blocker.
 ```
 
 If the direct message fails or is ambiguous, restore the sender as holder, record the failed handoff in `status.md`, report it to the user, and stop. Do not retry or create a replacement task without direction.
