@@ -13,13 +13,15 @@ Work at a safe boundary. Preserve active experiments, pending approvals, and int
 
 Capture the source task and host IDs, exact active model and thinking settings, actual checkout, objective, constraints, completed work, evidence, known-good check, artifacts, and next action. Obtain settings from source-task metadata or UI rather than inferring configured defaults. If exact required settings cannot be established, preserve the source and report that specific gap.
 
+Preserve authorized phases, non-goals, acceptance, finding dispositions, and correction history. For review-related handoffs or unresolved stop triggers, read [shared review recovery](/home/tnnrpolley21/.codex/references/review-control.md); a successor cannot reset the same acceptance boundary or promote optional work into authority.
+
 Read [the handoff template](references/handoff-template.md); for scientific or diagnosis-heavy work also read [evidence guidance](references/evidence-first.md). Verify required artifact paths and distinguish unavailable evidence from completed work. Keep the handoff concise; preserve decisions and evidence rather than raw transcripts or private reasoning.
 
 ## Create and verify
 
 Use only callable tools needed for the selected target. Use `list_projects` to resolve project work, retaining the local checkout unless isolation was explicitly requested; projectless work needs no project lookup. Establish a supported observation route before creating work.
 
-Create the successor with the exact source model and thinking values and a direct instruction to continue from the handoff. Require it to verify the relevant known-good check and perform the first concrete next action. A setup-only `clientThreadId` is not an addressable task ID: retain it and keep the source active until a real task ID is established. Do not guess the mapping or launch a duplicate.
+Create the successor with the exact source model and thinking values and a direct instruction to continue from the handoff. Require it to verify the relevant known-good check and perform the first authorized next action, preserving any unresolved decision or recovery pause. A setup-only `clientThreadId` is not an addressable task ID: retain it and keep the source active until a real task ID is established. Do not guess the mapping or launch a duplicate.
 
 Observe the ready successor with supported wait/read tools. Keep the source active on a timeout, missing result, mismatched check, unavailable artifact, or unverifiable continuation. Only after concrete continuation is verified may `set_thread_archived` archive the exact source. Optional title-setting failure does not invalidate successful creation.
 

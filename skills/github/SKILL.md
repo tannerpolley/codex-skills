@@ -9,6 +9,6 @@ Resolve the exact repository and target. Check account and permissions for actio
 
 Read [profile preferences](references/preferences.md) for implementation delivery, repository configuration, PR creation or merge, and closeout. They define standing authority for active personal repositories, the draft-PR default, and worktree disposition. Apply only the preferences relevant to the authorized task; preserve other repositories and user work.
 
-An ordinary implementation request in that scope includes validation, a focused commit, push, and draft PR. An explicit merge request includes governed closeout; apply the reference's separate rules for disposable agent worktrees and user-owned or unknown worktrees. Follow repository-required checks and report any unresolved gate.
+Apply the root publication boundary; the preference reference owns hosted mechanics and draft-PR defaults. An explicit merge request includes governed closeout; apply the reference's separate rules for disposable agent worktrees and user-owned or unknown worktrees. Follow repository-required checks and report any unresolved gate.
 
 Use [GitHub CLI guidance](references/github-cli.md) when command details or unsupported API fields are needed. Use `git` for local state and the local portion of closeout. Read back external writes before reporting completion.

@@ -5,12 +5,19 @@ Use this template for the successor prompt. Replace required placeholders with o
 ```markdown
 You are taking over from an oversized Codex thread. Continue from this handoff; do not restart the task or merely acknowledge the takeover.
 
-Use tools first to verify the workspace and current state, verify the known-good check, then execute the first concrete action in `## Next Steps`. Continue until the objective is complete or a genuine blocker remains. Report concrete work and results, not an acknowledgement-only response.
+Verify the workspace, current state, and known-good check, then execute the first authorized action in `## Next Steps`. Preserve unresolved decisions and recovery pauses. Continue through authorized phases until the endpoint or a genuine blocker; report concrete results.
 
 # Takeover Handoff
 
 ## Objective
 <Current user goal and expected finish line.>
+
+## Acceptance and Review State
+- Authorized phases and non-goals: <...>
+- Acceptance evidence: <...>
+- Optional experiments and future possibilities, not authorized work: <...>
+- Finding dispositions and correction rounds for this acceptance boundary: <...>
+- Recovery decision or unresolved stop: <...>
 
 ## Source Thread
 - Thread id: <exact source thread id>

@@ -5,7 +5,7 @@
 1. Inspect `git status --short --branch`, `git diff`, and `git diff --staged`.
 2. Stage explicit files or hunks with `git add -- <paths>` or `git add -p -- <paths>`.
 3. Re-read the staged patch. A commit should represent one coherent reason for change and preserve tests or docs required for that change to make sense.
-4. Commit only when authorized, then verify status and `git show --stat --oneline HEAD`.
+4. Make focused local commits within authorized implementation, then verify status and `git show --stat --oneline HEAD`. A commit grants no remote publication authority.
 
 Do not use `git commit -a` when unreviewed tracked changes are present. Never stage secrets, local credentials, build artifacts, or unrelated user changes.
 
@@ -44,15 +44,16 @@ Resolve each file intentionally, stage exact resolved paths, run relevant tests,
 
 For a local-only merge, honor configured guarded hooks. Inspect `core.hooksPath`, the relevant hook, exact branch tips, and worktree occupancy before mutation. Preserve protected, occupied, unmerged, or unrelated branches.
 
-For GitHub closeout, first use the `github` skill to establish the exact merged PR, head, merge commit, remote default branch, authority, and worktree provenance. Then:
+For GitHub closeout, first use the `github` skill to verify the exact PR is merged and establish its repository/remote, reviewed head/ref, merge identity/method, target branch, issue closure, authority, and worktree provenance. Remote branch disappearance alone is not merge evidence. Then:
 
-1. Fetch and prune the exact remote; verify the merged head's remote-tracking ref is absent.
-2. Fast-forward the clean canonical default-branch checkout when available. Preserve dirty or unique work rather than auto-stashing or resetting it.
-3. Detach a retained clean feature worktree at the verified integrated commit before deleting the exact merged local head through the repository's guarded workflow.
-4. Apply the GitHub preference reference's worktree disposition. Do not infer disposable ownership from a path or ask again when authorized disposition is already established.
-5. Run the global cleanup audit and inspect final refs, worktrees, and status.
+1. Before pruning upstream metadata, map local branches to that exact remote head/PR using upstream configuration, task provenance, and commits. Include differently named related branches; neither a similar name nor a `gone` marker establishes association.
+2. Verify each candidate has no additional unmerged work. For squash/rebase merges, use verified PR mapping and integration evidence; ancestry alone may be insufficient. Preserve uncertainty rather than force-delete after `git branch -d` refuses.
+3. Require the exact remote feature head to be absent, deleting it through GitHub only when necessary and authorized. Fetch/prune the relevant remote-tracking state and verify absence; pruning does not delete local branches.
+4. Return the saved task checkout to local `main` and fast-forward it safely. Preserve unrelated dirty state and unique commits; no automatic stash, hard reset, default-branch rename, or forced takeover of occupied `main`. If `main` is invalid, divergent, or occupied, report the exact blocker and use native input for an unresolved material choice. A detached saved checkout does not meet this endpoint.
+5. Remove the identified integrated feature branches after switching off them, through repository-guarded mechanics. Apply the GitHub reference's worktree disposition; preserve occupied user/unknown worktrees and remove only obsolete metadata for exact disposable worktrees. Do not infer provenance from paths or repeat established approvals.
+6. Verify integration, relevant local/remote refs, worktrees, saved-checkout branch/status, and issue closure. Report safety blockers without destroying unrelated work.
 
-An already-absent target is satisfied; continue the remaining closeout. An ordinary PR closeout does not sweep unrelated gone branches. If a configured wrapper such as `git-clean-gone` is required, verify it is installed; do not replace it with an unguarded force-deletion loop.
+An already-absent target is satisfied; continue the remaining closeout. An ordinary PR closeout does not sweep unrelated gone branches. If a configured wrapper such as `git-clean-gone` is required, verify it is installed and can stay within these exact candidates; do not use a broad sweep or unguarded force-deletion loop.
 
 ## Sources
 

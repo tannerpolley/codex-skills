@@ -10,8 +10,8 @@ These preferences are standing workflow authority for the authenticated `tannerp
 
 ## Delivery
 
-- A completed implementation request includes repository-contract validation, a focused commit, push, and a draft pull request.
-- Merge requires an explicit request unless the original task already includes merge authority.
+- Apply the root authority boundary: local implementation may include focused commits; remote publication and merge need matching task authority, reused when already clear. A local-only endpoint is complete without a push or PR.
+- An explicit merge request covers necessary prerequisites for that reviewed PR, not unrelated branch updates. A push to an already armed auto-merge PR requires merge authority as well as publication authority.
 - Use an exact closing keyword when the PR fully resolves an issue and verify closure after merge. Use non-closing references for partial work.
 
 ## Repository defaults
@@ -30,26 +30,19 @@ Keep visibility, default branch, allowed merge methods, branch rules, security s
 - Follow explicit repository merge policy, then recent accepted PR history. Ask only when neither establishes the merge method.
 - An explicit merge request authorizes marking the exact eligible draft ready.
 - Require repository-documented validation and review gates, a clean PR head, and no known failures even when GitHub has no required checks.
-- Enable auto-merge when an explicitly requested merge is waiting only on pending gates.
+- Enable auto-merge when an explicitly requested merge is waiting only on pending hosted gates after selected local review. Use an available exact-head guard and verify the hosted head; it does not lock out later pushes. Report pending honestly and preserve any selected workflow's no-watcher boundary.
 - Update a behind branch only when repository policy, mergeability, or meaningful validation requires it, then rerun affected gates.
 
 ## Governed closeout
 
-An explicit request to merge the exact PR authorizes all of the following without separate branch-cleanup permission:
+An explicit request to merge the exact PR authorizes verified merge/issue closure, removal of its remote feature head, and the associated local closeout without separate branch-cleanup permission. Use [Git history and recovery](../../git/references/history-and-recovery.md#merge-and-closeout) for branch mapping, integration checks, pruning, and returning the saved checkout to updated local `main`.
 
-- verify the merge and declared issue closure;
-- require the exact remote head and remote-tracking ref to be absent;
-- delete the exact merged local head branch;
-- fast-forward the clean canonical default-branch checkout;
-- leave every retained checkout clean;
-- run the repository cleanup audit.
-
-Closeout is idempotent and state-driven. Already-satisfied invariants are success. Cleanup covers only the exact merged PR head, not unrelated stale branches. When the user merges through GitHub separately, the related task completes these local invariants when it resumes or closes.
+Closeout is idempotent and state-driven. Already-satisfied invariants are success. It covers safely integrated local branches associated with that exact PR, including different local names, not unrelated stale branches. When the user merges through GitHub separately, the related task completes these local invariants when it resumes or closes. Preserve dirty state, unique work, and occupied checkouts; pending auto-merge is not merge evidence.
 
 ## Worktrees and tasks
 
 - Classify provenance only from explicit task or creation context; never infer it from a filesystem path.
 - Automatically retire a clean, integrated worktree that was explicitly created by an agent as disposable orchestration state. Do not ask permission. Archive its completed task as the final action when applicable.
-- For a user-created Codex worktree task, detach and clean the worktree after merge, then use native user input to ask whether to delete/archive it or retain it for more work. Archive the task when deletion is chosen.
+- For a user-created Codex worktree task, preserve it and use native input to decide deletion/archive or retention. Return the saved task checkout to local `main` through Git closeout when safe; do not force occupied branches or destroy dirty state. Archive the task when deletion is chosen.
 - Treat unknown provenance as user-created and ask.
 - Retain and report any worktree or branch with unique unmerged work; automatic disposal never destroys it.

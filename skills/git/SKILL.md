@@ -11,4 +11,4 @@ Use the smallest native Git command that answers the question. Keep implementati
 
 Read [diffs and attributes](references/diffs-and-attributes.md) for unresolved tracking or presentation decisions. Read [history and recovery](references/history-and-recovery.md) for commits, synchronization, undo, conflicts, local merges, or post-merge closeout. Inspect both index and working-tree changes before committing.
 
-Use `github` for hosted objects, delivery preferences, and merge authority. Complete the exact merged PR's state-driven local closeout; preserve unrelated branches, occupied worktrees, dirty state, and unique commits. Apply global completion guidance for the cleanup audit at the verified Git root.
+Use `github` for hosted objects, delivery preferences, and merge authority. Complete the exact merged PR's state-driven local closeout; preserve unrelated branches, occupied worktrees, dirty state, and unique commits.
