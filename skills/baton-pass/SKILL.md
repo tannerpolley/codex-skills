@@ -33,19 +33,19 @@ The planner is repository-read-only except for the ignored session folder.
 5. Otherwise ask the user to approve or revise the plan and staffing together. After approval, create fresh manager and worker app tasks in the same saved local checkout using the approved combinations. Give each an inert setup prompt naming its role, session path, and exact next handoff.
 6. Record their task IDs in `status.md`, set manager as holder, send the manager the `plan-ready` handoff, and stop.
 
-When the manager later requests plan-fidelity review, compare the local candidate with `brief.md` and `plan.md`. Return `PASS` or one consolidated findings list tied to requirements and evidence, distinguishing blockers from optional advice, then stop.
+When the manager later requests plan-fidelity review, compare the local candidate with `brief.md` and `plan.md`, including the root no-overengineering rule. Reject bandaid layers that retain the diagnosed broken implementation. Return `PASS` or one consolidated findings list tied to requirements and evidence, distinguishing blockers from optional advice, then stop.
 
 ## Manager
 
-The manager is the only role that mutates Git or GitHub.
+The manager is the only role that mutates Git or GitHub. Enforce the root no-overengineering rule in assignments and acceptance: the only accepted repair removes all broken code within the diagnosed boundary and replaces it with the simplest correct solution. Never dispatch or accept bandaid layers over problematic code; preserve required behavior, safeguards, and unrelated work.
 
 1. Read the approved plan, verify the checkout, reuse or create the task feature branch, and turn the plan into a bounded worker assignment with the same outcome, non-goals, acceptance, and correction history reviewers will receive.
 2. Set worker as holder in `status.md`, send one concise handoff, then wait on that exact worker. When it completes or needs attention, immediately continue at step 3. Successful message delivery is not a stopping condition.
-3. When work returns, inspect the complete diff and evidence, including Serena use or its concrete fallback reason for supported code work. Classify findings before making tiny obvious in-scope corrections or sending substantive corrections to the worker under shared recovery.
+3. When work returns, inspect the complete diff and evidence, including Serena use or its concrete fallback reason for supported code work. Verify that repairs replace the defective implementation at its responsible boundary rather than mask its symptoms. Classify findings before making tiny obvious in-scope replacements or sending substantive replacements to the worker under shared recovery.
 4. Run required local checks and commit a coherent candidate. Prepare local review evidence: brief, plan, candidate SHA, relevant diff, changed paths, checks, and limitations. A published PR is not a local-review prerequisite.
 5. Ask the original planner for plan-fidelity review. Adjudicate findings against accepted scope before assigning corrections.
-6. If the user enabled Fable, use the available `fable-review` skill on a self-contained candidate packet. Treat its result as advisory, verify the findings, and ask the user whether to apply or decline them.
-7. Spawn one fresh native collaboration reviewer with no inherited turns and the approved model/effort, using the live tool schema. Supply the brief, plan, outcome/non-goals, candidate SHA, diff, checks, review criteria, and correction history. Require read-only work, no helpers, no Git/GitHub or app-task mutation, and the same no-scheduling boundary. Findings must identify a violated requirement and evidence, or be labeled optional.
+6. If the user enabled Fable, use the available `fable-review` skill on a self-contained candidate packet that includes the root no-overengineering requirement. Treat its result as advisory, verify the findings, and ask the user whether to apply or decline them.
+7. Spawn one fresh native collaboration reviewer with no inherited turns and the approved model/effort, using the live tool schema. Supply the brief, plan, outcome/non-goals, candidate SHA, diff, checks, review criteria, and correction history. Require read-only work, no helpers, no Git/GitHub or app-task mutation, and the same no-scheduling boundary. Explicitly require rejection of overengineering and bandaid layers: acceptance requires removal of the diagnosed broken implementation, a correct replacement, and preserved required behavior and safeguards. Findings must identify a violated requirement and evidence, or be labeled optional.
 8. Adjudicate findings before bounded worker corrections. Renew only invalidated checks or reviews and establish acceptance at the actual final candidate. Preserve correction history across every holder and reviewer.
 9. After planner `PASS`, selected Fable disposition, and independent `ACCEPT`, verify publication authority. A local-only endpoint finishes locally; otherwise obtain missing publication authority natively. Immediately before push, verify HEAD, relevant index/worktree state, review evidence, remote target, and existing auto-merge state. A push that could trigger armed auto-merge also needs merge authority.
 10. Push only the accepted candidate, create/update the authorized draft PR, and verify its hosted head. Hosted CI and required GitHub reviews that need publication remain merge gates afterward. Any branch update requires renewed affected evidence.
@@ -59,7 +59,7 @@ If hosted checks or mergeability are pending, report the actual gate and await a
 The worker writes implementation and tests but does not mutate Git or GitHub.
 
 1. Read only the current assignment, brief, and approved plan.
-2. Implement the smallest maintainable change and run proportionate checks.
+2. Follow the root no-overengineering rule: never add bandaid code over problematic code. Remove all broken code within the diagnosed boundary and replace it with the simplest correct solution, preserving required behavior, safeguards, and unrelated work. Run proportionate checks against the original failure and affected behavior; if replacement exceeds authority, return the blocker instead of layering a workaround.
 3. Write a short result in the session folder with changed paths, checks, remaining risk, and inherited correction history. At a recovery trigger, pause affected edits and return the evidence to the manager through the same handoff.
 4. Set manager as holder in `status.md`, then call `mcp__codex_app__send_message_to_thread` exactly once with the manager task ID recorded there and the concise handoff below; only a successful tool result completes the handoff. Create no helper agents or app tasks.
 
